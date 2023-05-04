@@ -1,0 +1,28 @@
+kind: Module
+description: VirtualBucket
+name: vmbucket
+type: container
+hotReload:
+  sync:
+  - target: /app
+services:
+  - name: vmbucket
+    args: [npm, run, start]
+    devMode:
+      sync:
+        - target: /app
+          source: app
+          mode: two-way
+    ports:
+      - name: http
+        containerPort: 5003
+    healthCheck:
+      httpGet:
+        path: /health
+        port: http
+    ingresses:
+      - path: /
+        port: http
+        hostname: vmbucket.${var.baseHostname}
+    env:
+      HOSTNAME: vmbucket.${var.baseHostname}

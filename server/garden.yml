@@ -1,0 +1,44 @@
+kind: Module
+description: Node Proxy
+name: nodeproxy
+type: container
+hotReload:
+  sync:
+  - target: /app
+services:
+  - name: nodeproxy
+    args: [npm, run, start]
+    devMode:
+      sync:
+        - target: /app
+          source: app
+          mode: two-way
+    ports:
+      - name: http
+        containerPort: 5002
+    healthCheck:
+      httpGet:
+        path: /health
+        port: http
+    ingresses:
+      - path: /
+        port: http
+        hostname: nodeproxy.${var.baseHostname}
+    env:
+      HOSTNAME: nodeproxy.${var.baseHostname}
+      VMBUCKET_URL: vmbucket.${var.baseHostname}
+      PGDATABASE:
+        secretRef:
+          name: pg-name
+          key: pg-dbname
+      PGUSER:
+        secretRef:
+          name: pg-user
+          key: pg-username
+      PGPASSWORD: 
+        secretRef:
+          name: pg-pass
+          key: pg-password
+    dependencies:
+      - vmbucket
+      - db
