@@ -1,0 +1,10 @@
+kind: Project
+name: react-mf-expirement
+defaultEnvironment: local
+environments:
+  - name: local
+    variables:
+      baseHostname: reactmf.local.demo.garden
+providers:
+  - name: local-kubernetes
+    environments: [local]

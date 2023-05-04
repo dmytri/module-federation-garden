@@ -1,0 +1,25 @@
+kind: Module
+description: Remote UI
+name: remoteui
+type: container
+services:
+  - name: remoteui
+    args: [npm, run, serve]
+    devMode:
+      sync:
+        - target: /app/src
+          source: src
+          mode: two-way
+    ports:
+      - name: http
+        containerPort: 5001
+    healthCheck:
+      httpGet:
+        path: /
+        port: http
+    ingresses:
+      - path: /
+        port: http
+        hostname: remoteui.${var.baseHostname}
+    env:
+      HOSTNAME: remoteui.${var.baseHostname}

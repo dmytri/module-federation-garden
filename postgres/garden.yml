@@ -1,0 +1,31 @@
+kind: Module
+description: Postgres container
+type: container
+name: postgres
+image: postgres:15.2-alpine3.17
+services:
+  - name: db
+    volumes:
+      - name: data
+        containerPath: /db-data
+    ports:
+      - name: db
+        containerPort: 5432
+    env:
+      POSTGRES_DB:
+        secretRef:
+          name: pg-name
+          key: pg-dbname
+      POSTGRES_PASSWORD:
+        secretRef:
+          name: pg-pass
+          key: pg-password
+      POSTGRES_USER:
+        secretRef:
+          name: pg-user
+          key: pg-username
+    healthCheck:
+      command:
+        - /bin/sh
+        - -c
+        - 'env PGPASSWORD="$POSTGRES_PASSWORD" psql -w -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c ''SELECT 1'''
