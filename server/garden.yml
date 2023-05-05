@@ -2,9 +2,7 @@ kind: Module
 description: Node Proxy
 name: nodeproxy
 type: container
-hotReload:
-  sync:
-  - target: /app
+
 services:
   - name: nodeproxy
     args: [npm, run, start]
@@ -12,7 +10,7 @@ services:
       sync:
         - target: /app
           source: app
-          mode: two-way
+          mode: one-way-replica
     ports:
       - name: http
         containerPort: 5002

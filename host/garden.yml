@@ -2,6 +2,7 @@ kind: Module
 description: Remote UI
 name: hostui
 type: container
+
 services:
   - name: hostui
     args: [npm, run, serve]
@@ -9,7 +10,7 @@ services:
       sync:
         - target: /app/src
           source: src
-          mode: two-way
+          mode: one-way-replica
     ports:
       - name: http
         containerPort: 5000
