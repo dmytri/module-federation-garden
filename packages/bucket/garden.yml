@@ -8,13 +8,9 @@ hotReload:
 services:
   - name: vmbucket
     args: [npm, run, start]
-    devMode:
-      sync:
-        - target: /app
-          source: app
-          mode: two-way
     ports:
       - name: http
+        protocol: TCP
         containerPort: 5003
     healthCheck:
       httpGet:
