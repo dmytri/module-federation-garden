@@ -25,18 +25,18 @@ services:
     env:
       HOSTNAME: nodeproxy.${var.baseHostname}
       VMBUCKET_URL: vmbucket.${var.baseHostname}
-      PGDATABASE:
+      POSTGRES_DB:
         secretRef:
-          name: pg-name
-          key: pg-dbname
-      PGUSER:
+          name: postgres
+          key: dbname
+      POSTGRES_PASSWORD:
         secretRef:
-          name: pg-user
-          key: pg-username
-      PGPASSWORD: 
+          name: postgres
+          key: password
+      POSTGRES_USER:
         secretRef:
-          name: pg-pass
-          key: pg-password
+          name: postgres
+          key: username
     dependencies:
       - vmbucket
       - db
