@@ -67,4 +67,12 @@
     button {
       background-color: #f9f9f9;
     }
-  }
+  }.shared-btn {
+    background-color: darkblue;
+    border: 1px solid white;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+}

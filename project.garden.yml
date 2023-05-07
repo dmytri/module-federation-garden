@@ -7,6 +7,7 @@ environments:
     defaultNamespace: dev-${local.username}
     variables:
       baseHostname: demo.local.app.garden
+
 providers:
   - name: local-kubernetes
     namespace: ${environment.namespace}
