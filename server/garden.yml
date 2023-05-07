@@ -5,7 +5,6 @@ type: container
 
 services:
   - name: nodeproxy
-    args: [npm, run, start]
     devMode:
       sync:
         - target: /app
