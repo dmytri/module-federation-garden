@@ -14,16 +14,16 @@ services:
     env:
       POSTGRES_DB:
         secretRef:
-          name: pg-name
-          key: pg-dbname
+          name: postgres
+          key: dbname
       POSTGRES_PASSWORD:
         secretRef:
-          name: pg-pass
-          key: pg-password
+          name: postgres
+          key: password
       POSTGRES_USER:
         secretRef:
-          name: pg-user
-          key: pg-username
+          name: postgres
+          key: username
     healthCheck:
       command:
         - /bin/sh
