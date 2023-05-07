@@ -9,7 +9,7 @@ services:
     devMode:
       sync:
         - target: /app/src
-          source: src
+          source: app/src
           mode: one-way-replica
     ports:
       - name: http
