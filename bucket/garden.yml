@@ -5,12 +5,6 @@ type: container
 
 services:
   - name: vmbucket
-    args: [npm, run, start]
-    devMode:
-      sync:
-        - target: /app
-          source: app
-          mode: one-way-replica
     ports:
       - name: http
         containerPort: 5000
