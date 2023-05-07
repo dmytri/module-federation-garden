@@ -23,6 +23,7 @@ fastify.get('/health', async (req, reply) => {
 })
 
 fastify.get('/', async (req, reply) => {
+	reply.header('Content-Type', 'application/json')
 	try {
 		const files = await fs.readdir(__dirname)
 		return files.filter(file =>  parseInt(file) >= 0)
@@ -32,7 +33,7 @@ fastify.get('/', async (req, reply) => {
 	}
 })
 
-fastify.listen({ host: '0.0.0.0', port: 5003 }, err => {
+fastify.listen({  host:'0.0.0.0', port: 5003 }, err => {
 	if (err) {
 		fastify.log.error(err)
 		process.exit(1)

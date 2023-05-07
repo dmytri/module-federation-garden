@@ -10,7 +10,7 @@ export default defineConfig({
 			name: 'app',
 			remotes: {
 				remoteApp:
-					'http://nodeproxy.reactmf.local.demo.garden:5002/remoteEntry.js?version=^1.0.0'
+					'http://nodeproxy.reactmf.local.demo.garden/remoteEntry.js?version=^1.0.0'
 			},
 			shared: ['react', 'react-dom']
 		})

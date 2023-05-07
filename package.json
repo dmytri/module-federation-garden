@@ -1,0 +1,8 @@
+{
+  "name": "react-mf-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "React Module Federation Monorepo",
+  "main": "index.js",
+  "type": "module"
+}

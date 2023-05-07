@@ -12,10 +12,11 @@ services:
       sync:
         - target: /app
           source: app
-          mode: two-way
+          mode: one-way
     ports:
       - name: http
-        containerPort: 5002
+        protocol: TCP
+        containerPort: 5002 
     healthCheck:
       httpGet:
         path: /health
@@ -26,7 +27,6 @@ services:
         hostname: nodeproxy.${var.baseHostname}
     env:
       HOSTNAME: nodeproxy.${var.baseHostname}
-      VMBUCKET_URL: vmbucket.${var.baseHostname}
       PGDATABASE:
         secretRef:
           name: pg-name
