@@ -2,6 +2,7 @@ kind: Module
 description: Remote UI
 name: hostui
 type: container
+include: [Dockerfile, app]
 
 services:
   - name: hostui
