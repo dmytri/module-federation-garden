@@ -1,0 +1,38 @@
+kind: Module
+description: Data Access Service
+name: postraphile
+type: container
+hotReload:
+  sync:
+  - target: /app
+services:
+  - name: postraphile
+    args: [npm, run, start]
+    ports:
+      - name: http
+        protocol: TCP
+        containerPort: 5000
+    healthCheck:
+      httpGet:
+        path: /health
+        port: http
+    ingresses:
+      - path: /
+        port: http
+        hostname: postraphile.${var.baseHostname}
+    env:
+      HOSTNAME: postraphile.${var.baseHostname}
+      PGDATABASE:
+        secretRef:
+          name: pg-name
+          key: pg-dbname
+      PGUSER:
+        secretRef:
+          name: pg-user
+          key: pg-username
+      PGPASSWORD: 
+        secretRef:
+          name: pg-pass
+          key: pg-password
+    dependencies:
+      - db
