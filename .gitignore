@@ -3,3 +3,4 @@ node_modules/
 .garden
 server/app
 bucket/app
+dist/

@@ -8,8 +8,4 @@ COPY src/ /app/src/
 RUN npm install -g pnpm@8.4.0 \
     && pnpm install
 
-COPY 1.0.0/ /app/src/1.0.0/
-COPY 1.0.1/ /app/src/1.0.1/
-COPY 1.0.2/ /app/src/1.0.2/
-
 CMD ["pnpm", "run", "start"]

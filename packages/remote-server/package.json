@@ -1,17 +1,15 @@
 {
-  "name": "bucket",
+  "name": "remote-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon src/index.js"
-  },
+  "private": true,
   "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
   "dependencies": {
     "@fastify/static": "^6.10.1",
     "fastify": "^4.17.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
   }
 }
