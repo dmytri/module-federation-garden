@@ -1,6 +1,14 @@
-import Fastify from 'fastify'
+import Fastify, { FastifyRequest } from 'fastify'
 import semver from 'semver'
 import got from 'got'
+
+interface QueryParameters {
+	version?: string
+}
+
+interface RouteParameters { 
+	file: string
+}
 
 const fastify = Fastify({
 	logger: true
@@ -31,7 +39,7 @@ async function getAvailableVersions() {
 
 let version = ''
 
-fastify.get('/:file', async function (request, reply) {
+fastify.get('/:file', async function (request: FastifyRequest <{Querystring: QueryParameters; Params: RouteParameters}>, reply) {
 	reply.header('Access-Control-Allow-Origin', '*')
 	reply.header('Content-Type', 'application/javascript; charset=utf-8')
 

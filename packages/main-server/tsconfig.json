@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "composite": true,
+      "skipLibCheck": true,
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "allowSyntheticDefaultImports": true,
+      "incremental": true,
+      "tsBuildInfoFile": "./buildcache/nodejs",
+      "outDir": "./dist"
+    }, 
+    "exclude": ["node_modules", "dist"],
+    "include": ["src"]
+  }
+  
