@@ -1,5 +1,5 @@
-import Fastify from 'fastify'
-import { postgraphile, PostGraphileResponseFastify3 } from 'postgraphile'
+import Fastify, { FastifyRequest, FastifyReply } from 'fastify'
+import { postgraphile, PostGraphileResponseFastify3, PostGraphileResponse } from 'postgraphile'
 
 const database = process.env.PGDATABASE
 const username = process.env.PGUSER
@@ -17,7 +17,10 @@ const middleware = postgraphile(`postgres://${username}:${password}@db/${databas
 
 const fastify = Fastify({ logger: true })
 
-const convertHandler = handler => (request, reply) =>
+const convertHandler = (handler: (res: PostGraphileResponse) => Promise<void>) => (
+  request: FastifyRequest,
+  reply: FastifyReply,
+) =>
 	handler(new PostGraphileResponseFastify3(request, reply))
 
 fastify.options(
