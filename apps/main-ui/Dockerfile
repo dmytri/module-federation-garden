@@ -16,4 +16,4 @@ RUN pnpm install -r --offline \
 
 EXPOSE 5004
 
-CMD ["pnpm", "-r", "run", "serve"]
+CMD ["pnpm", "--filter", "main-ui", "serve"]
