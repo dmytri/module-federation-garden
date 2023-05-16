@@ -5,3 +5,5 @@ server/app
 bucket/app
 dist/
 buildcache/
+.turbo
+build/**

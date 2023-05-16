@@ -1,0 +1,22 @@
+{
+  "name": "data-access",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "fastify": "^4.17.0",
+    "postgraphile": "^4.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.1",
+    "typescript": "^5.0.4"
+  }
+}
