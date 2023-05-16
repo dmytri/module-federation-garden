@@ -7,7 +7,8 @@ interface QueryParameters {
 }
 
 interface RouteParameters { 
-	file: string
+	file: string,
+	app: string
 }
 
 const fastify = Fastify({
@@ -28,9 +29,9 @@ function findMatchingVersion(semverRange:string, availableVersions: string[]) {
 		: null
 }
 
-async function getAvailableVersions(): Promise<string[]> {
+async function getAvailableVersions(appName: string): Promise<string[]> {
 	try {
-		return await got.get(`http://localhost:5001`).json()
+		return await got.get(`http://vmbucket:5001/${appName}`).json()
 	} catch (error) {
 		console.log('error in request to localhost versions', error)
 		return []
@@ -39,19 +40,19 @@ async function getAvailableVersions(): Promise<string[]> {
 
 let version = ''
 
-fastify.get('/:file', async function (request: FastifyRequest <{Querystring: QueryParameters; Params: RouteParameters}>, reply) {
+fastify.get('/:app/:file', async function (request: FastifyRequest <{Querystring: QueryParameters; Params: RouteParameters}>, reply) {
 	reply.header('Access-Control-Allow-Origin', '*')
 	reply.header('Content-Type', 'application/javascript; charset=utf-8')
 
 	if (request.query.version === undefined) {
 		return await got
 			.get(
-				`http://localhost:5001/public/${version}/${request.params.file}`
+				`http://vmbucket:5001/public/${request.params.app}/${version}/${request.params.file}`
 			)
 			.text()
 	}
 
-	const versions = await getAvailableVersions() || []
+	const versions = await getAvailableVersions(request.params.app) || []
 
 	const match = findMatchingVersion(request.query.version, versions) || ''
 
@@ -59,7 +60,7 @@ fastify.get('/:file', async function (request: FastifyRequest <{Querystring: Que
 
 	const data = await got
 		.get(
-			`http://localhost:5001/public/${version}/${request.params.file}`
+			`http://vmbucket:5001/public/${request.params.app}/${version}/${request.params.file}`
 		)
 		.text()
 

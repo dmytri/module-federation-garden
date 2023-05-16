@@ -2,17 +2,22 @@ import { join } from 'path'
 import * as url from 'url'
 import fs from 'node:fs/promises'
 
-import Fastify from 'fastify'
+import Fastify, { FastifyRequest } from 'fastify'
 import Static from '@fastify/static'
 import { fsa } from '@chunkd/fs'
 import multer from 'fastify-multer'
 
 import { File } from 'fastify-multer/lib/interfaces'
+import { request } from 'http'
 
 declare module 'fastify' {
 	export interface FastifyRequest {
 		files: File[]
 	}
+}
+
+interface RouteParameters {
+	appName: string
 }
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -26,7 +31,7 @@ const upload = multer()
 fastify.register(multer.contentParser)
 
 fastify.register(Static, {
-	root: join(__dirname),
+	root: join(__dirname, '../'),
 	prefix: '/public/'
 })
 
@@ -48,7 +53,7 @@ fastify.get('/health', async (req, reply) => {
 	return { status: 'ok' }
 })
 
-fastify.post('/:file', { preHandler: upload.any() }, async (req, reply) => {
+fastify.post('/', { preHandler: upload.any() }, async (req, reply) => {
 	const files = req.files
 	const version = req.headers['x-version'] || '1.0.0'
 
@@ -60,16 +65,21 @@ fastify.post('/:file', { preHandler: upload.any() }, async (req, reply) => {
 	return { status: 'ok' }
 })
 
-fastify.get('/', async (req, reply) => {
-	reply.header('Content-Type', 'application/json')
-	try {
-		const files = await fs.readdir(__dirname)
-		return files.filter(file => parseInt(file) >= 0)
-	} catch (err) {
-		fastify.log.error(err)
-		reply.status(500).send({ error: 'Failed to read directory' })
+fastify.get(
+	'/:appName',
+	async (req: FastifyRequest<{ Params: RouteParameters }>, reply) => {
+		reply.header('Content-Type', 'application/json')
+		try {
+			const files = await fs.readdir(
+				`${join(__dirname, '../')}${req.params.appName}`
+			)
+			return files.filter(file => parseInt(file) >= 0)
+		} catch (err) {
+			fastify.log.error(err)
+			reply.status(500).send({ error: 'Failed to read directory' })
+		}
 	}
-})
+)
 
 fastify.listen({ host: '0.0.0.0', port: 5001 }, err => {
 	if (err) {

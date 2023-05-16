@@ -10,7 +10,7 @@ export default defineConfig({
 			name: 'app',
 			remotes: {
 				remoteApp:
-					'http://localhost:5003/remoteEntry.js?version=^1.0.0'
+					'http://localhost:5003/remote-ui/remoteEntry.js?version=^1.0.0'
 			},
 			shared: ['react', 'react-dom']
 		})

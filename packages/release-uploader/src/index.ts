@@ -27,7 +27,7 @@ async function uploadAssets(
 			formData.append(pkgName, fileBuffer, fileName)
 		}
 
-		const response = await fetch('http://localhost:5001', {
+		const response = await fetch('http://vmbucket:5001', {
 			method: 'POST',
 			body: formData,
 			headers: {
