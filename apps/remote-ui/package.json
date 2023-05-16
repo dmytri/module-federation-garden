@@ -1,0 +1,31 @@
+{
+  "name": "remote-ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5006 --strictPort",
+    "build": "vite build",
+    "lint": "tsc -p tsconfig.json",
+    "preview": "vite preview --port 5006 --strictPort",
+    "serve": "vite preview --port 5006 --strictPort --host",
+    "version": "node -p \"require('./package.json').version\"",
+    "release-patch": "pnpm version patch && release-uploader $(pnpm run version) $npm_package_name",
+    "release-minor": "pnpm version minor && release-uploader $(pnpm run version) $npm_package_name",
+    "release-major": "pnpm version major && release-uploader $(pnpm run version) $npm_package_name",
+    "release": "pnpm version $VERSION_TYPE && release-uploader $(pnpm run version) $npm_package_name"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "release-uploader": "*",
+    "@originjs/vite-plugin-federation": "1.2.2",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^3.0.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.0.3"
+  }
+}

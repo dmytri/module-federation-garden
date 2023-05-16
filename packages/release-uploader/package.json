@@ -1,0 +1,21 @@
+{
+  "name": "release-uploader",
+  "version": "1.0.0",
+  "description": "Uploads versions of remote package to S3/Local Directory",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "bin": {
+    "release-uploader": "dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.3.1"
+  }
+}
