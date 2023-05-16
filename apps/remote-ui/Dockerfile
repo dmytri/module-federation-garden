@@ -4,13 +4,13 @@ WORKDIR /app
 
 RUN npm i -g pnpm
 
-COPY pnpm-lock.yaml .npmrc ./
+COPY pnpm-lock.yaml ./
 
 RUN pnpm fetch
 
 COPY . ./
 
-RUN pnpm install -r \
+RUN pnpm install -r --offline \
     && pnpm -r build
 
 EXPOSE 5005
