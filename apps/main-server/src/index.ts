@@ -30,9 +30,9 @@ function findMatchingVersion(semverRange:string, availableVersions: string[]) {
 
 async function getAvailableVersions(): Promise<string[]> {
 	try {
-		return await got.get(`http://vmbucket:5000`).json()
+		return await got.get(`http://localhost:5001`).json()
 	} catch (error) {
-		console.log('error in request to vmbucket versions', error)
+		console.log('error in request to localhost versions', error)
 		return []
 	}
 }
@@ -46,7 +46,7 @@ fastify.get('/:file', async function (request: FastifyRequest <{Querystring: Que
 	if (request.query.version === undefined) {
 		return await got
 			.get(
-				`http://vmbucket:5000/public/${version}/${request.params.file}`
+				`http://localhost:5001/public/${version}/${request.params.file}`
 			)
 			.text()
 	}
@@ -59,7 +59,7 @@ fastify.get('/:file', async function (request: FastifyRequest <{Querystring: Que
 
 	const data = await got
 		.get(
-			`http://vmbucket:5000/public/${version}/${request.params.file}`
+			`http://localhost:5001/public/${version}/${request.params.file}`
 		)
 		.text()
 

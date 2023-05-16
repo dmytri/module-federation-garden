@@ -7,3 +7,4 @@ dist/
 buildcache/
 .turbo
 build/**
+.env

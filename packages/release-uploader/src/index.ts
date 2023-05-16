@@ -27,7 +27,7 @@ async function uploadAssets(
 			formData.append(pkgName, fileBuffer, fileName)
 		}
 
-		const response = await fetch('http://0.0.0.0:5001', {
+		const response = await fetch('http://localhost:5001', {
 			method: 'POST',
 			body: formData,
 			headers: {
@@ -54,7 +54,7 @@ const [version, pkgName] = args
 async function main() {
 	await uploadAssets(
 		pkgName,
-		`${join(__dirname, '../..')}/${pkgName}/dist/assets`,
+		`${join(__dirname, '../../..')}/apps/${pkgName}/dist/assets`,
 		version
 	)
 }

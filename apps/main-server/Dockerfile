@@ -10,7 +10,7 @@ RUN pnpm fetch
 
 COPY . ./
 
-RUN pnpm install -r \
+RUN pnpm install -r --offline \
     && pnpm -r build
 
 EXPOSE 5003

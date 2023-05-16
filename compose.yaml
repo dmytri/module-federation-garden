@@ -1,0 +1,66 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15.2-alpine3.17
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./apps/postgres/world.sql:/docker-entrypoint-initdb.d/world.sql
+    ports:
+      - "5432:5432"
+    restart: always
+  postgraphile:
+    container_name: data-access
+    build: 
+      context: .
+      dockerfile: apps/data-access/Dockerfile
+    environment:
+      - PGUSER=${POSTGRES_USER}
+      - PGPASSWORD=${POSTGRES_PW}
+      - PGDATABASE=${POSTGRES_DB}
+    ports:
+      - "5002:5002"
+    depends_on:
+      - postgres
+    restart: always
+  vmbucket:
+    container_name: vmbucket
+    build: 
+      context: .
+      dockerfile: apps/bucket/Dockerfile
+    ports:
+      - "5001:5001"
+  mainserver:
+    container_name: main-server
+    build: 
+      context: .
+      dockerfile: apps/main-server/Dockerfile
+    ports:
+      - "5003:5003"
+    depends_on:
+      - vmbucket
+  remoteserver:
+    container_name: remote-server
+    build: 
+      context: .
+      dockerfile: apps/remote-server/Dockerfile
+    ports:
+      - "5005:5005"
+    depends_on:
+      - vmbucket
+  hostapp:
+    container_name: host-ui
+    build: 
+      context: .
+      dockerfile: apps/main-ui/Dockerfile
+    ports:
+      - "5004:5004"
+  remoteapp:
+    container_name: remote-ui
+    build: 
+      context: .
+      dockerfile: apps/remote-ui/Dockerfile
+    ports:
+      - "5006:5006"

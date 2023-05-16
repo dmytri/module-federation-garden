@@ -5,7 +5,7 @@ const database = process.env.PGDATABASE
 const username = process.env.PGUSER
 const password = process.env.PGPASSWORD
 
-const middleware = postgraphile(`postgres://${username}:${password}@db/${database}`, `public`, {
+const middleware = postgraphile(`postgres://${username}:${password}@postgres:5432/${database}`, `public`, {
 	subscriptions: true,
 	watchPg: true,
 	dynamicJson: true,
