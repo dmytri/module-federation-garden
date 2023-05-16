@@ -6,6 +6,10 @@
 Our key metric and north star is cycle time, as this is a aggregate measure of
 flow efficiency and a leading metric for value delivery.
 
+## Lifecycle
+
+![Application Lifecycle](assets/lifecycle.png)
+
 ## DX
 
 Good developer experience and fast feedback looks are critical for minimizing
@@ -29,7 +33,7 @@ aproval delays.
 
 ##### Mitigation:
 
-Try it as soon as possible Alternative:
+Try it as soon as possible.
 
 ##### Alternative
 
@@ -56,13 +60,65 @@ eliminating configuration drift and state build up.
 
 Source Countrol will be in GitHub
 
-The main application (webapp) will be in a Monorepo, this will include
+The main application (webapp) will be in a [Monorepo](https://monorepo.tools), this will include
+
     - Main UI
     - Applications features, i.e. Login, Alarms, etc
     - Design Component Packages
     - Insight Microfrontends
 
-We will use Trunk Based Development, Short Lived Feature Branches.
+We will use [Trunk Based Development](https://trunkbaseddevelopment.com), [Short Lived Feature Branches(https://trunkbaseddevelopment.com/short-lived-feature-branches/)].
 
 Branches should be branched directly off main and come back as pull requests into the main/trunk.
+
+## Git Commit Message Policy
+
+We will follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format, in summary
+
+1. Keep it concise: Limit your commit messages to 50 characters or less.
+
+1. Start the commit message with a type prefix that categorizes the nature of the change.
+
+  feat: A new feature or enhancement added to the project.
+  fix: A bug fix or correction made to the project.
+  docs: Documentation-related changes, such as updating README files or adding comments.
+  style: Changes that do not affect the code's functionality (e.g., formatting, indentation).
+  refactor: Code refactoring or restructuring without adding new features or fixing bugs.
+  test: Adding or modifying tests.
+  chore: Routine tasks, maintenance, or other non-code-related changes.
+
+1. Use present tense. eg. "Update login form" rather than "Feat: Updated Registration form."
+
+1. Commit message with ! to draw attention to breaking change. eg "feat!: Update Registration Form"o
+
+1. Explain breaking change with a BREAKING CHANGE footer:
+
+   eg: BREAKING CHANGE: Replace Name field with First Name and Last Name field
+
+1. Reference ADO stories that relate to this change.
+
+## SemVer
+
+We will use [Semantic Versioning](https://semver.org/) for each component.
+
+Version format: Follow the MAJOR.MINOR.PATCH format for version numbers.
+
+MAJOR version: Increment the MAJOR version when you make incompatible API changes or introduce significant new features.
+
+MINOR version: Increment the MINOR version when you add functionality in a backward-compatible manner.
+
+PATCH version: Increment the PATCH version for backward-compatible bug fixes or minor improvements.
+
+## Commit Messages and SemVer
+
+Fix type commits should be translated to PATCH releases. feat type commits
+should be translated to MINOR releases. Commits with BREAKING CHANGE in the
+commits, regardless of type, should be translated to MAJOR releases.
+
+## Tools
+
+- [commitzen](https://commitizen-tools.github.io/commitizen/) is a tool that
+  help write commit messages and manage semver version bumping.
+
+
 
