@@ -89,7 +89,7 @@ the change.
   - test: Adding or modifying tests.
   - chore: Routine tasks, maintenance, or other non-code-related changes.
 1. Use present tense. eg. "update registration form" rather than "Feat: Updated
-registration form."
+   registration form."
 1. Commit message with ! to draw attention to breaking change. eg "feat!:
    update registration form"
 1. Explain breaking change with a BREAKING CHANGE footer.
