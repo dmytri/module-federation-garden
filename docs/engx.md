@@ -76,38 +76,37 @@ Branches should be branched directly off main and come back as pull requests int
 We will follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format, in summary
 
 1. Keep it concise: Limit your commit messages to 50 characters or less.
-
-1. Start the commit message with a type prefix that categorizes the nature of the change.
-
-  feat: A new feature or enhancement added to the project.
-  fix: A bug fix or correction made to the project.
-  docs: Documentation-related changes, such as updating README files or adding comments.
-  style: Changes that do not affect the code's functionality (e.g., formatting, indentation).
-  refactor: Code refactoring or restructuring without adding new features or fixing bugs.
-  test: Adding or modifying tests.
-  chore: Routine tasks, maintenance, or other non-code-related changes.
-
-1. Use present tense. eg. "Update login form" rather than "Feat: Updated Registration form."
-
-1. Commit message with ! to draw attention to breaking change. eg "feat!: Update Registration Form"o
-
-1. Explain breaking change with a BREAKING CHANGE footer:
-
+1. Start the commit message with a type prefix that categorizes the nature of
+the change.
+  - feat: A new feature or enhancement added to the project.
+  - fix: A bug fix or correction made to the project.
+  - docs: Documentation-related changes, such as updating README files or
+    adding comments.
+  - style: Changes that do not affect the code's functionality (e.g.,
+    formatting, indentation).
+  - refactor: Code refactoring or restructuring without adding new features or
+    fixing bugs.
+  - test: Adding or modifying tests.
+  - chore: Routine tasks, maintenance, or other non-code-related changes.
+1. Use present tense. eg. "update registration form" rather than "Feat: Updated
+registration form."
+1. Commit message with ! to draw attention to breaking change. eg "feat!:
+   update registration form"
+1. Explain breaking change with a BREAKING CHANGE footer.
    eg: BREAKING CHANGE: Replace Name field with First Name and Last Name field
-
 1. Reference ADO stories that relate to this change.
 
 ## SemVer
 
 We will use [Semantic Versioning](https://semver.org/) for each component.
 
-Version format: Follow the MAJOR.MINOR.PATCH format for version numbers.
-
-MAJOR version: Increment the MAJOR version when you make incompatible API changes or introduce significant new features.
-
-MINOR version: Increment the MINOR version when you add functionality in a backward-compatible manner.
-
-PATCH version: Increment the PATCH version for backward-compatible bug fixes or minor improvements.
+- Version format: Follow the MAJOR.MINOR.PATCH format for version numbers.
+- MAJOR version: Increment the MAJOR version when you make incompatible API
+  changes or introduce significant new features.
+- MINOR version: Increment the MINOR version when you add functionality in a
+  backward-compatible manner.
+- PATCH version: Increment the PATCH version for backward-compatible bug fixes
+  or minor improvements.
 
 ## Commit Messages and SemVer
 
