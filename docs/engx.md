@@ -75,8 +75,8 @@ Branches should be branched directly off main and come back as pull requests int
 
 We will follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format, in summary
 
-1. Keep it concise: Limit your commit messages to 50 characters or less.
-1. Start the commit message with a type prefix that categorizes the nature of
+- Keep it concise: Limit your commit messages to 50 characters or less.
+- Start the commit message with a type prefix that categorizes the nature of
 the change.
   - feat: A new feature or enhancement added to the project.
   - fix: A bug fix or correction made to the project.
@@ -88,13 +88,13 @@ the change.
     fixing bugs.
   - test: Adding or modifying tests.
   - chore: Routine tasks, maintenance, or other non-code-related changes.
-1. Use present tense. eg. "update registration form" rather than "Feat: Updated
-   registration form."
-1. Commit message with ! to draw attention to breaking change. eg "feat!:
-   update registration form"
-1. Explain breaking change with a BREAKING CHANGE footer.
-   eg: BREAKING CHANGE: Replace Name field with First Name and Last Name field
-1. Reference ADO stories that relate to this change.
+- Use present tense. eg. "update registration form" rather than "Feat: Updated
+  registration form."
+- Commit message with ! to draw attention to breaking change. eg "feat!:
+  update registration form"
+- Explain breaking change with a BREAKING CHANGE footer.
+  eg: BREAKING CHANGE: Replace Name field with First Name and Last Name field
+- Reference ADO stories that relate to this change.
 
 ## SemVer
 
