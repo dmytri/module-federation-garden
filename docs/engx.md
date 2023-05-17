@@ -20,8 +20,8 @@ their work for testing and review.
 
 To accomplish this, we will automate the deployment of the application
 leveraging kubernetes namespaces to create production-like enviroments across
-delivery pipeline, including on the developers desktop (VDI), using Kubernetes
-via Docker Desktop.
+the delivery pipeline, including on the developers desktop (VDI), using
+Kubernetes via Docker Desktop.
 
 For the first sprint we will use docker compose with docker desktop for local
 enviroments as we author the autmation to use kuberenetes namespaces.
@@ -38,7 +38,7 @@ Try it as soon as possible.
 ##### Alternative
 
 Allow developers to deploy their own working namescapes on the hosted
-kubernetes cluster.
+kubernetes cluster, or use Cloud9 hosted dev environments with customer's AWS
 
 ## QA
 
@@ -60,14 +60,14 @@ eliminating configuration drift and state build up.
 
 Source Countrol will be in GitHub
 
-The main application (webapp) will be in a [Monorepo](https://monorepo.tools), this will include
+The main application (webapp) will be in a [Monorepo](https://monorepo.tools), this will include:
+ - Main UI
+ - Applications features, i.e. Login, Alarms, etc
+ - Insight Microfrontends
+ - Design Component Packages
 
-    - Main UI
-    - Applications features, i.e. Login, Alarms, etc
-    - Design Component Packages
-    - Insight Microfrontends
-
-We will use [Trunk Based Development](https://trunkbaseddevelopment.com), [Short Lived Feature Branches(https://trunkbaseddevelopment.com/short-lived-feature-branches/)].
+We will use [Trunk Based Development](https://trunkbaseddevelopment.com) with
+[Short Lived FeatureBranches](https://trunkbaseddevelopment.com/short-lived-feature-branches/).
 
 Branches should be branched directly off main and come back as pull requests into the main/trunk.
 
@@ -118,6 +118,4 @@ commits, regardless of type, should be translated to MAJOR releases.
 
 - [commitzen](https://commitizen-tools.github.io/commitizen/) is a tool that
   help write commit messages and manage semver version bumping.
-
-
 
